@@ -1,0 +1,31 @@
+
+<div class="container">
+  <h1>My tasks</h1>
+  <hr>
+  <ul class="list-unstyled"">
+    <% @list.each do |task| %>
+      <% unless task.completed %>
+       <li>
+          <input type="checkbox" disabled="disabled"><%= link_to task.title, task_path(task) %></input>
+          <%= link_to ("<i class='fas fa-trash'></i>").html_safe, task_path(task),
+            method: :delete,
+            data: {confirm: "Are you sure?"} %>
+        </li>
+      <% else %>
+        <li>
+          <input type="checkbox" disabled="disabled" checked><%= link_to task.title, task_path(task) %></input>
+          <%= link_to ("<i class='fas fa-trash'></i>").html_safe, task_path(task),
+            method: :delete,
+            data: {confirm: "Are you sure?"} %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+  <hr>
+  <%= link_to "+ Add to list", new_task_path %>
+</div>
+
+
+
+
+
